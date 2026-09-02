@@ -15,7 +15,14 @@ export const metadata: Metadata = {
     images: [{ url: '/assets/images/hero-sofa.png', width: 1200, height: 630, alt: 'Heaven Furniture Mart Hero' }],
   },
   icons: {
-    icon: '/assets/images/logo.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/images/logo.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 };
 
