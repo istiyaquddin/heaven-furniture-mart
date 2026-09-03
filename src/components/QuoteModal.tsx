@@ -40,7 +40,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     e.preventDefault();
     setSubmitted(true);
 
-    const message = `Hello Heaven Furniture Mart!\nI would like to request a bespoke furniture quotation:\n\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Space/Room: ${formData.room}\n• Delivery Timeline: ${formData.timeline}\n• Specifications: ${formData.notes || 'None provided'}`;
+    const message = `Hello Heaven Furniture Mart!\nI would like to request a bespoke design consultation:\n\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Space/Room: ${formData.room}\n• Delivery Timeline: ${formData.timeline}\n• Requirements: ${formData.notes || 'None provided'}`;
     const url = `https://wa.me/8801960481983?text=${encodeURIComponent(message)}`;
     setTimeout(() => {
       window.open(url, '_blank');
@@ -60,20 +60,20 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep flex items-center justify-center transition-colors shadow-md cursor-pointer"
-          aria-label="Close Quote Modal"
+          aria-label="Close Consultation Modal"
         >
           <X className="w-4 h-4" />
         </button>
 
         <div className="mb-6">
           <span className="text-[10px] uppercase tracking-[0.25em] text-gold-dark font-bold block mb-1">
-            Private Consultation Request
+            Complimentary Design Consultation
           </span>
           <h3 className="font-display text-2xl text-teal-deep font-medium">
-            Commission a Bespoke Work
+            Request a Consultation
           </h3>
           <p className="font-sans text-xs text-brown-soft mt-1">
-            Share your space requirements. Our Agrabad design studio will contact you within 2 hours.
+            Share your space requirements. Our Agrabad design consultants will contact you to plan floor layouts, timber selection, and finishes.
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               type="submit"
               className="btn-luxury-shimmer w-full bg-teal-deep hover:bg-gold text-ivory hover:text-teal-deep py-4 font-semibold uppercase tracking-[0.2em] text-xs transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Submit & Open WhatsApp Concierge</span>
+              <span>Confirm & Request Consultation on WhatsApp</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>

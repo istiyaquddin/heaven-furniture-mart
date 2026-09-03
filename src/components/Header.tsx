@@ -85,7 +85,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
               onClick={onOpenQuote}
               className="btn-luxury-shimmer bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep px-4 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 border border-gold/40 shadow-sm flex items-center gap-2 group cursor-pointer"
             >
-              <span>Request a Quote</span>
+              <span>Request a Consultation</span>
               <ArrowRight className="w-3.5 h-3.5 hidden xs:inline transition-transform duration-300 group-hover:translate-x-1" />
             </button>
 
@@ -177,9 +177,9 @@ export default function Header({ onOpenQuote }: HeaderProps) {
         <div className="pt-6 border-t border-gold/20 space-y-3 mt-6">
           <button
             onClick={() => { toggleMobile(); onOpenQuote(); }}
-            className="btn-luxury-shimmer w-full bg-gold hover:bg-gold-light text-teal-deep py-3.5 font-semibold uppercase tracking-[0.2em] text-xs transition-colors shadow-md"
+            className="btn-luxury-shimmer w-full bg-gold hover:bg-gold-light text-teal-deep py-3.5 font-semibold uppercase tracking-[0.2em] text-xs transition-colors shadow-md cursor-pointer"
           >
-            Request a Quote
+            Request a Consultation
           </button>
           <a
             href="https://wa.me/8801960481983?text=Hello%20Heaven%20Furniture%20Mart,%20I%20would%20like%20to%20consult%20on%20custom%20furniture."

@@ -58,7 +58,7 @@ export const products: Product[] = [
     wood: "American White Oak / Seasoned Gamari",
     fabric: "Ergonomic Breathable Mesh / Leather Seat",
     size: "Desk: 6.5ft x 3ft | Credenza: 7ft x 1.5ft",
-    waText: "Hello Heaven Furniture Mart, please quote The Executive Director Workspace Suite for our office."
+    waText: "Hello Heaven Furniture Mart, I would like to consult on The Executive Director Workspace Suite for our office."
   },
   {
     id: "sofa-tufted-camelback",
@@ -142,7 +142,7 @@ export const products: Product[] = [
     wood: "Solid American Walnut / Teak",
     fabric: "Textured Warm Ivory Bouclé",
     size: "King: 6.5ft x 7ft Base + Floating Nightstands",
-    waText: "Hi Heaven Furniture Mart, I would like a quote for the Aurelia Arch Bouclé Bed."
+    waText: "Hi Heaven Furniture Mart, I would like a design consultation for the Aurelia Arch Bouclé Bed."
   },
   {
     id: "dining-coral-marble",
@@ -166,7 +166,7 @@ export const products: Product[] = [
     wood: "Solid Seasoned Hardwood (Natural Matte Finish)",
     fabric: "Commercial-Grade Seafoam Performance Fabric",
     size: "Table: 14ft (L) x 4.5ft (W) x 2.5ft (H)",
-    waText: "Hi Heaven Furniture Mart, we need a quote for The Presidential Boardroom Conference Table."
+    waText: "Hi Heaven Furniture Mart, we would like a consultation for The Presidential Boardroom Conference Table."
   },
   {
     id: "sofa-silver-floral",

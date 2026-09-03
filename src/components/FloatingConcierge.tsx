@@ -27,7 +27,7 @@ export default function FloatingConcierge() {
 
       {/* WhatsApp Floating Pill */}
       <a
-        href="https://wa.me/8801960481983?text=Hello%20Heaven%20Furniture%20Mart,%20I%20am%20interested%20in%20a%20bespoke%20furniture%20quote."
+        href="https://wa.me/8801960481983?text=Hello%20Heaven%20Furniture%20Mart,%20I%20am%20interested%20in%20a%20bespoke%20furniture%20consultation."
         target="_blank"
         rel="noopener noreferrer"
         className="bg-[#25D366] hover:bg-[#1DA851] text-white p-3 sm:px-4 sm:py-3 shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2 group border border-white/20"
