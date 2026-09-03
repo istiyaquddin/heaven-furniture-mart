@@ -245,7 +245,6 @@ const spacesData: SpaceCategory[] = [
 ];
 
 export default function Collections({ onSelectProduct }: CollectionsProps) {
-  // Independent image rotation index for each space
   const [imageIndices, setImageIndices] = useState<Record<string, number>>({
     living: 0,
     bedroom: 0,
@@ -253,7 +252,6 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
     office: 0
   });
 
-  // Staggered automatic shuffle/rotation timer (every 4.5s)
   useEffect(() => {
     const timer = setInterval(() => {
       setImageIndices((prev) => ({
@@ -278,16 +276,16 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
   const currentOfficeItem = officeSpace.items[imageIndices.office];
 
   return (
-    <section id="collections" className="bg-[#173331] text-[#f2eee4] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 md:px-12 border-t border-[#b69151]/20">
+    <section id="collections" className="bg-[#173331] text-[#f2eee4] py-16 sm:py-24 lg:py-32 px-4 sm:px-8 md:px-12 border-t border-[#b69151]/20">
       <div className="max-w-[1440px] mx-auto">
         
-        {/* Section Header matching exact live site */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 sm:mb-16 gap-6">
+        {/* Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-12 lg:mb-16 gap-4 sm:gap-6">
           <div>
-            <p className="font-editorial-mono text-[10px] uppercase tracking-[0.2em] text-[#a8b2ab] mb-3">
+            <p className="font-editorial-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#a8b2ab] mb-2 sm:mb-3">
               Selected spaces
             </p>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.02] tracking-tight text-[#f2eee4]">
+            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.04] tracking-tight text-[#f2eee4]">
               The pieces that<br />
               <em className="text-[#d6bf8d] not-italic font-normal">set a room apart.</em>
             </h2>
@@ -297,23 +295,19 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
           </p>
         </div>
 
-        {/* Exact Live Site Grid Layout:
-            - Desktop (lg): 3 columns (1.2fr 1fr 1fr), 2 rows of strictly 260px each, gap 1.2rem
-            - Living room spans 2 rows (260px + 260px + gap = ~539px, perfectly proportionate)
-            - Tablet (md): 2 columns, 3 rows
-            - Mobile: single column stack
+        {/* Responsive Editorial Grid:
+            - Mobile (<768px): Single column, generous heights (320px - 360px), no cramped text
+            - Tablet (md: 768px - 1023px): 2 columns
+            - Desktop (lg: 1024px+): Exact 1.2fr 1fr 1fr live-site grid with 260px rows
         */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr] lg:grid-rows-[260px_260px] gap-[1.2rem]"
-          style={{ gridAutoFlow: 'dense' }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr] lg:grid-rows-[260px_260px] gap-3.5 sm:gap-4 lg:gap-[1.2rem]">
           
-          {/* 01 Living Room (collection-large: spans 2 rows) */}
+          {/* 01 Living Room */}
           <div
             onClick={() => onSelectProduct(currentLivingItem)}
-            className="lg:row-span-2 relative h-[380px] md:h-[390px] lg:h-full bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-end p-6 sm:p-7 border border-transparent hover:border-[#b69151]/50 transition-all duration-300"
+            className="lg:row-span-2 relative h-[320px] sm:h-[380px] md:h-[390px] lg:h-full bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-between p-4 sm:p-6 lg:p-7 border border-[#b69151]/15 hover:border-[#b69151]/60 transition-all duration-300 shadow-lg"
           >
-            {/* Shuffling Background Images with Smooth Cross-fade */}
+            {/* Shuffling Background Images with Cross-fade */}
             {livingSpace.items.map((item, idx) => (
               <div
                 key={item.id}
@@ -325,53 +319,58 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.82] group-hover:brightness-[0.92]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 42vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.84] group-hover:brightness-[0.94]"
                 />
               </div>
             ))}
 
-            {/* Live Site Linear Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/92 via-[#0d1d1b]/30 to-transparent pointer-events-none" />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/95 via-[#0d1d1b]/35 to-transparent pointer-events-none" />
 
-            {/* Top Index */}
-            <span className="absolute top-5 left-6 z-10 font-editorial-mono text-[11px] text-[#b69151] font-semibold">
-              {livingSpace.index}
-            </span>
+            {/* Top Bar: Index & Mini Progress Dots */}
+            <div className="relative z-10 flex items-center justify-between w-full">
+              <span className="font-editorial-mono text-[10px] sm:text-[11px] text-[#b69151] font-semibold bg-[#0d1d1b]/70 px-2 py-0.5 rounded-xs border border-[#b69151]/30">
+                {livingSpace.index}
+              </span>
 
-            {/* Content Meta */}
-            <div className="relative z-10">
-              <h3 className="font-display text-2xl sm:text-3xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors">
-                {livingSpace.title}
-              </h3>
-              <p className="font-editorial-sans text-xs text-[#a8b2ab] mt-1">
-                {livingSpace.subtitle}
-              </p>
+              <div className="flex items-center gap-1 bg-[#0d1d1b]/70 px-2 py-1 rounded-full border border-[#b69151]/20">
+                {livingSpace.items.map((_, dotIdx) => (
+                  <span
+                    key={dotIdx}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      dotIdx === imageIndices.living ? 'w-3 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Action */}
-            <b className="absolute bottom-6 right-6 z-10 flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] transition-colors">
-              <span>Enquire</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </b>
+            {/* Bottom Content Area */}
+            <div className="relative z-10 flex items-end justify-between gap-3 pt-4">
+              <div className="min-w-0 flex-1">
+                <p className="font-editorial-mono text-[8.5px] sm:text-[9.5px] tracking-[0.14em] uppercase text-[#a8b2ab] mb-0.5 sm:mb-1 truncate">
+                  {livingSpace.subtitle}
+                </p>
+                <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors truncate">
+                  {livingSpace.title}
+                </h3>
+                <span className="text-[10px] sm:text-[11px] font-editorial-sans text-[#cfd8d2]/75 truncate block mt-1">
+                  · {currentLivingItem.title}
+                </span>
+              </div>
 
-            {/* Mini Progress Dots */}
-            <div className="absolute top-5 right-6 z-10 flex items-center gap-1">
-              {livingSpace.items.map((_, dotIdx) => (
-                <span
-                  key={dotIdx}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    dotIdx === imageIndices.living ? 'w-3.5 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
-                  }`}
-                />
-              ))}
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] bg-[#0d1d1b]/80 px-2.5 py-1.5 rounded-full border border-[#b69151]/40 shrink-0 transition-colors">
+                <span>Enquire</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </div>
 
-          {/* 02 Bedroom (row 1, col 2, height: 260px) */}
+          {/* 02 Bedroom */}
           <div
             onClick={() => onSelectProduct(currentBedItem)}
-            className="relative h-[260px] md:h-[300px] lg:h-[260px] bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-end p-6 border border-transparent hover:border-[#b69151]/50 transition-all duration-300"
+            className="relative h-[280px] sm:h-[300px] lg:h-[260px] bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-between p-4 sm:p-6 border border-[#b69151]/15 hover:border-[#b69151]/60 transition-all duration-300 shadow-md"
           >
             {bedroomSpace.items.map((item, idx) => (
               <div
@@ -384,47 +383,56 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 30vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.82] group-hover:brightness-[0.92]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 30vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.84] group-hover:brightness-[0.94]"
                 />
               </div>
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/92 via-[#0d1d1b]/30 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/95 via-[#0d1d1b]/35 to-transparent pointer-events-none" />
 
-            <span className="absolute top-5 left-6 z-10 font-editorial-mono text-[11px] text-[#b69151] font-semibold">
-              {bedroomSpace.index}
-            </span>
+            {/* Top Bar: Index & Dots */}
+            <div className="relative z-10 flex items-center justify-between w-full">
+              <span className="font-editorial-mono text-[10px] sm:text-[11px] text-[#b69151] font-semibold bg-[#0d1d1b]/70 px-2 py-0.5 rounded-xs border border-[#b69151]/30">
+                {bedroomSpace.index}
+              </span>
 
-            <div className="relative z-10">
-              <h3 className="font-display text-2xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors">
-                {bedroomSpace.title}
-              </h3>
-              <p className="font-editorial-sans text-xs text-[#a8b2ab] mt-1">
-                {bedroomSpace.subtitle}
-              </p>
+              <div className="flex items-center gap-1 bg-[#0d1d1b]/70 px-2 py-1 rounded-full border border-[#b69151]/20">
+                {bedroomSpace.items.map((_, dotIdx) => (
+                  <span
+                    key={dotIdx}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      dotIdx === imageIndices.bedroom ? 'w-3 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
-            <b className="absolute bottom-6 right-6 z-10 flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] transition-colors">
-              <span>Enquire</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </b>
+            {/* Bottom Content */}
+            <div className="relative z-10 flex items-end justify-between gap-3 pt-4">
+              <div className="min-w-0 flex-1">
+                <p className="font-editorial-mono text-[8.5px] sm:text-[9px] tracking-[0.14em] uppercase text-[#a8b2ab] mb-0.5 truncate">
+                  {bedroomSpace.subtitle}
+                </p>
+                <h3 className="font-display text-lg sm:text-xl lg:text-2xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors truncate">
+                  {bedroomSpace.title}
+                </h3>
+                <span className="text-[10px] font-editorial-sans text-[#cfd8d2]/75 truncate block mt-0.5">
+                  · {currentBedItem.title}
+                </span>
+              </div>
 
-            <div className="absolute top-5 right-6 z-10 flex items-center gap-1">
-              {bedroomSpace.items.map((_, dotIdx) => (
-                <span
-                  key={dotIdx}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    dotIdx === imageIndices.bedroom ? 'w-3.5 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
-                  }`}
-                />
-              ))}
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] bg-[#0d1d1b]/80 px-2.5 py-1.5 rounded-full border border-[#b69151]/40 shrink-0 transition-colors">
+                <span>Enquire</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </div>
 
-          {/* 03 Dining (row 1, col 3, height: 260px) */}
+          {/* 03 Dining */}
           <div
             onClick={() => onSelectProduct(currentDiningItem)}
-            className="relative h-[260px] md:h-[300px] lg:h-[260px] bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-end p-6 border border-transparent hover:border-[#b69151]/50 transition-all duration-300"
+            className="relative h-[280px] sm:h-[300px] lg:h-[260px] bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-between p-4 sm:p-6 border border-[#b69151]/15 hover:border-[#b69151]/60 transition-all duration-300 shadow-md"
           >
             {diningSpace.items.map((item, idx) => (
               <div
@@ -437,47 +445,56 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 30vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.82] group-hover:brightness-[0.92]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 30vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.84] group-hover:brightness-[0.94]"
                 />
               </div>
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/92 via-[#0d1d1b]/30 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/95 via-[#0d1d1b]/35 to-transparent pointer-events-none" />
 
-            <span className="absolute top-5 left-6 z-10 font-editorial-mono text-[11px] text-[#b69151] font-semibold">
-              {diningSpace.index}
-            </span>
+            {/* Top Bar: Index & Dots */}
+            <div className="relative z-10 flex items-center justify-between w-full">
+              <span className="font-editorial-mono text-[10px] sm:text-[11px] text-[#b69151] font-semibold bg-[#0d1d1b]/70 px-2 py-0.5 rounded-xs border border-[#b69151]/30">
+                {diningSpace.index}
+              </span>
 
-            <div className="relative z-10">
-              <h3 className="font-display text-2xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors">
-                {diningSpace.title}
-              </h3>
-              <p className="font-editorial-sans text-xs text-[#a8b2ab] mt-1">
-                {diningSpace.subtitle}
-              </p>
+              <div className="flex items-center gap-1 bg-[#0d1d1b]/70 px-2 py-1 rounded-full border border-[#b69151]/20">
+                {diningSpace.items.map((_, dotIdx) => (
+                  <span
+                    key={dotIdx}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      dotIdx === imageIndices.dining ? 'w-3 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
-            <b className="absolute bottom-6 right-6 z-10 flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] transition-colors">
-              <span>Enquire</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </b>
+            {/* Bottom Content */}
+            <div className="relative z-10 flex items-end justify-between gap-3 pt-4">
+              <div className="min-w-0 flex-1">
+                <p className="font-editorial-mono text-[8.5px] sm:text-[9px] tracking-[0.14em] uppercase text-[#a8b2ab] mb-0.5 truncate">
+                  {diningSpace.subtitle}
+                </p>
+                <h3 className="font-display text-lg sm:text-xl lg:text-2xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors truncate">
+                  {diningSpace.title}
+                </h3>
+                <span className="text-[10px] font-editorial-sans text-[#cfd8d2]/75 truncate block mt-0.5">
+                  · {currentDiningItem.title}
+                </span>
+              </div>
 
-            <div className="absolute top-5 right-6 z-10 flex items-center gap-1">
-              {diningSpace.items.map((_, dotIdx) => (
-                <span
-                  key={dotIdx}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    dotIdx === imageIndices.dining ? 'w-3.5 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
-                  }`}
-                />
-              ))}
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] bg-[#0d1d1b]/80 px-2.5 py-1.5 rounded-full border border-[#b69151]/40 shrink-0 transition-colors">
+                <span>Enquire</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </div>
 
-          {/* 04 Office & Study (collection-work: row 2, spans 2 columns, height: 260px) */}
+          {/* 04 Office & Study */}
           <div
             onClick={() => onSelectProduct(currentOfficeItem)}
-            className="md:col-span-2 lg:col-span-2 relative h-[260px] md:h-[300px] lg:h-[260px] bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-end p-6 border border-transparent hover:border-[#b69151]/50 transition-all duration-300"
+            className="md:col-span-2 lg:col-span-2 relative h-[280px] sm:h-[300px] lg:h-[260px] bg-[#0d1d1b] overflow-hidden group cursor-pointer flex flex-col justify-between p-4 sm:p-6 border border-[#b69151]/15 hover:border-[#b69151]/60 transition-all duration-300 shadow-md"
           >
             {officeSpace.items.map((item, idx) => (
               <div
@@ -490,40 +507,49 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.82] group-hover:brightness-[0.92]"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 60vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.84] group-hover:brightness-[0.94]"
                 />
               </div>
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/92 via-[#0d1d1b]/30 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d1d1b]/95 via-[#0d1d1b]/35 to-transparent pointer-events-none" />
 
-            <span className="absolute top-5 left-6 z-10 font-editorial-mono text-[11px] text-[#b69151] font-semibold">
-              {officeSpace.index}
-            </span>
+            {/* Top Bar: Index & Dots */}
+            <div className="relative z-10 flex items-center justify-between w-full">
+              <span className="font-editorial-mono text-[10px] sm:text-[11px] text-[#b69151] font-semibold bg-[#0d1d1b]/70 px-2 py-0.5 rounded-xs border border-[#b69151]/30">
+                {officeSpace.index}
+              </span>
 
-            <div className="relative z-10">
-              <h3 className="font-display text-2xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors">
-                {officeSpace.title}
-              </h3>
-              <p className="font-editorial-sans text-xs text-[#a8b2ab] mt-1">
-                {officeSpace.subtitle}
-              </p>
+              <div className="flex items-center gap-1 bg-[#0d1d1b]/70 px-2 py-1 rounded-full border border-[#b69151]/20">
+                {officeSpace.items.map((_, dotIdx) => (
+                  <span
+                    key={dotIdx}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      dotIdx === imageIndices.office ? 'w-3 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
-            <b className="absolute bottom-6 right-6 z-10 flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] transition-colors">
-              <span>Enquire</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </b>
+            {/* Bottom Content */}
+            <div className="relative z-10 flex items-end justify-between gap-3 pt-4">
+              <div className="min-w-0 flex-1">
+                <p className="font-editorial-mono text-[8.5px] sm:text-[9px] tracking-[0.14em] uppercase text-[#a8b2ab] mb-0.5 truncate">
+                  {officeSpace.subtitle}
+                </p>
+                <h3 className="font-display text-lg sm:text-xl lg:text-2xl text-[#f2eee4] font-normal leading-tight group-hover:text-[#d6bf8d] transition-colors truncate">
+                  {officeSpace.title}
+                </h3>
+                <span className="text-[10px] font-editorial-sans text-[#cfd8d2]/75 truncate block mt-0.5">
+                  · {currentOfficeItem.title}
+                </span>
+              </div>
 
-            <div className="absolute top-5 right-6 z-10 flex items-center gap-1">
-              {officeSpace.items.map((_, dotIdx) => (
-                <span
-                  key={dotIdx}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    dotIdx === imageIndices.office ? 'w-3.5 bg-[#b69151]' : 'w-1 bg-[#f2eee4]/30'
-                  }`}
-                />
-              ))}
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#f2eee4] group-hover:text-[#d6bf8d] bg-[#0d1d1b]/80 px-2.5 py-1.5 rounded-full border border-[#b69151]/40 shrink-0 transition-colors">
+                <span>Enquire</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </div>
 
