@@ -14,8 +14,8 @@
   --color-brown-charcoal: #3D2B1F;
   --color-brown-soft: #635043;
   
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), 'Playfair Display', Georgia, serif;
+  --font-sans: var(--font-sans), 'Montserrat', system-ui, -apple-system, sans-serif;
   --max-w-container-max: 1440px;
 }
 

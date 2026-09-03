@@ -1,12 +1,29 @@
 import type { Metadata } from 'next';
+import { Montserrat, Playfair_Display } from 'next/font/google';
 import './globals.css';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-display',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Heaven Furniture Mart | Bespoke Luxury Furniture & Interior Styling | Chattogram',
   description: "Chattogram's leading bespoke furniture atelier. We design, craft, and customize solid wood living, bedroom, dining, and executive suites around your floor plan. Agrabad Access Road.",
   keywords: 'Heaven Furniture Mart, bespoke furniture Chattogram, luxury interior design Chittagong, custom sofas, teak wood beds, royal dining table, office executive furniture Agrabad',
   authors: [{ name: 'Abul Kalam Bhuiyan, Managing Director' }],
-  metadataBase: new URL('https://heaven-furniture-mart.vercel.app'),
+  metadataBase: new URL('https://heaven-furniture-e-mart.vercel.app'),
   openGraph: {
     type: 'website',
     url: 'https://heaven-furniture-mart.vercel.app',
@@ -68,18 +85,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${montserrat.variable} ${playfair.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -91,3 +98,4 @@ export default function RootLayout({
     </html>
   );
 }
+

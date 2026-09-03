@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
+import { ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { products, Product } from '@/data/products';
 
 interface CollectionsProps {
@@ -92,11 +94,12 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
               className="card-lift bg-ivory border border-gold-hairline/40 hover:border-gold flex flex-col group cursor-pointer overflow-hidden active:scale-[0.99]"
             >
               <div className="relative aspect-[4/3] bg-teal-deep overflow-hidden">
-                <img
+                <Image
                   src={p.image}
                   alt={p.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108 group-hover:brightness-105"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-108 group-hover:brightness-105"
                 />
                 <div className="absolute top-3 left-3 bg-teal-deep/90 backdrop-blur-md border border-gold/40 text-gold-light text-[9px] uppercase tracking-[0.18em] px-2.5 py-1 font-semibold z-10">
                   {p.tag}
@@ -105,7 +108,7 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
                 <div className="absolute inset-0 bg-teal-deep/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                   <span className="bg-ivory text-teal-deep font-sans font-semibold text-[11px] uppercase tracking-widest px-4 py-2.5 shadow-xl flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                     <span>View Specifications</span>
-                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
@@ -120,8 +123,8 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
                 </div>
                 <div className="pt-3.5 border-t border-gold/20 flex items-center justify-between text-[11px] text-brown-charcoal">
                   <span className="font-semibold text-gold-dark truncate pr-2">{p.wood.split('(')[0]}</span>
-                  <span className="text-[10px] uppercase tracking-wider text-teal-deep font-bold flex items-center gap-1 flex-shrink-0 group-hover:translate-x-1 transition-transform">
-                    Inquire <span className="material-symbols-outlined text-[13px]">north_east</span>
+                  <span className="text-[10px] uppercase tracking-wider text-teal-deep font-bold flex items-center gap-1.5 flex-shrink-0 group-hover:translate-x-1 transition-transform">
+                    Inquire <ArrowUpRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
@@ -137,9 +140,7 @@ export default function Collections({ onSelectProduct }: CollectionsProps) {
               className="btn-luxury-shimmer inline-flex items-center gap-3 bg-teal-deep hover:bg-gold text-ivory hover:text-teal-deep px-8 py-4 text-xs uppercase tracking-[0.22em] font-semibold transition-all duration-300 shadow-xl border border-gold/40 active:scale-95"
             >
               <span>{isExpanded ? 'Show Curated Selection (9 Works)' : 'View All Collections (22 Works)'}</span>
-              <span className={`material-symbols-outlined text-sm transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                expand_more
-              </span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
             </button>
           </div>
         )}

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -11,7 +12,7 @@ export default function Footer() {
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 border border-gold/40 p-1 bg-teal-card flex items-center justify-center">
-                <img src="/assets/images/logo.png" alt="Heaven Logo" className="w-full h-full object-cover" />
+                <Image src="/assets/images/logo.png" alt="Heaven Logo" width={40} height={40} className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-bold tracking-[0.25em] text-ivory uppercase text-lg sm:text-xl leading-none">
@@ -24,7 +25,7 @@ export default function Footer() {
             </div>
 
             <p className="font-sans text-xs sm:text-sm text-ivory-muted/80 leading-relaxed max-w-md">
-              Chattogram's premier bespoke furniture atelier and architectural interior styling studio. Every collection is designed, handcrafted, and customized around your floor plan.
+              Chattogram&apos;s premier bespoke furniture atelier and architectural interior styling studio. Every collection is designed, handcrafted, and customized around your floor plan.
             </p>
 
             <div className="flex items-center gap-4 text-gold">

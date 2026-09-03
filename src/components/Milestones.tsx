@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { CheckCircle2 } from 'lucide-react';
 
 export default function Milestones() {
   const milestones = [
@@ -61,7 +62,7 @@ export default function Milestones() {
             Milestones of Craftsmanship
           </h2>
           <p className="font-sans text-xs sm:text-sm text-ivory-muted leading-relaxed">
-            From our founding workshop to nationwide recognition as one of Bangladesh's premier bespoke furniture ateliers.
+            From our founding workshop to nationwide recognition as one of Bangladesh&apos;s premier bespoke furniture ateliers.
           </p>
         </div>
 
@@ -95,7 +96,7 @@ export default function Milestones() {
 
                 {/* Extra Bullet Highlight */}
                 <div className="pt-3 border-t border-gold/15 flex items-start gap-2 text-[11px] text-ivory-muted/70">
-                  <span className="material-symbols-outlined text-gold text-sm flex-shrink-0 mt-0.5">verified</span>
+                  <CheckCircle2 className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                   <p className="leading-snug">{m.extra}</p>
                 </div>
               </div>

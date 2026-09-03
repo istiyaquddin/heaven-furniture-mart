@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { CheckCircle2, ArrowRight, X } from 'lucide-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -22,9 +23,16 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       document.body.classList.add('overflow-hidden');
     } else {
       document.body.classList.remove('overflow-hidden');
-      setSubmitted(false);
     }
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
   }, [isOpen]);
+
+  const handleClose = () => {
+    setSubmitted(false);
+    onClose();
+  };
 
   if (!isOpen) return null;
 
@@ -43,18 +51,18 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
       {/* Backdrop */}
       <div
-        onClick={onClose}
+        onClick={handleClose}
         className="fixed inset-0 bg-teal-deep/85 backdrop-blur-md transition-opacity"
       />
 
       {/* Modal Card */}
       <div className="relative w-full max-w-xl bg-ivory border border-gold shadow-2xl p-6 sm:p-10 z-10 animate-in fade-in zoom-in-95 duration-200">
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep flex items-center justify-center transition-colors shadow-md"
+          onClick={handleClose}
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep flex items-center justify-center transition-colors shadow-md cursor-pointer"
           aria-label="Close Quote Modal"
         >
-          ✕
+          <X className="w-4 h-4" />
         </button>
 
         <div className="mb-6">
@@ -71,7 +79,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
         {submitted ? (
           <div className="bg-teal-deep text-ivory p-6 border border-gold text-center space-y-3">
-            <span className="material-symbols-outlined text-gold text-4xl">check_circle</span>
+            <CheckCircle2 className="w-12 h-12 text-gold mx-auto" />
             <h4 className="font-display text-lg text-gold-light font-medium">Thank You for Inquiring</h4>
             <p className="font-sans text-xs text-ivory-muted leading-relaxed">
               Your consultation request has been logged. Redirecting to WhatsApp concierge for priority scheduling...
@@ -156,10 +164,10 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
             <button
               type="submit"
-              className="btn-luxury-shimmer w-full bg-teal-deep hover:bg-gold text-ivory hover:text-teal-deep py-4 font-semibold uppercase tracking-[0.2em] text-xs transition-all duration-300 shadow-md flex items-center justify-center gap-2"
+              className="btn-luxury-shimmer w-full bg-teal-deep hover:bg-gold text-ivory hover:text-teal-deep py-4 font-semibold uppercase tracking-[0.2em] text-xs transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Submit & Open WhatsApp Concierge</span>
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </form>
         )}

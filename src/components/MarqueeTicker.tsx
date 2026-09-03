@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { ExternalLink, Phone } from 'lucide-react';
 
 export default function MarqueeTicker() {
   const content = (
@@ -20,14 +21,14 @@ export default function MarqueeTicker() {
         <span className="underline decoration-gold/40 underline-offset-2 group-hover:decoration-gold">
           AGRABAD ACCESS ROAD (OPPOSITE RAK CERAMICS), CHATTOGRAM
         </span>
-        <span className="material-symbols-outlined text-[12px] text-gold">open_in_new</span>
+        <ExternalLink className="w-3 h-3 text-gold inline-block" />
       </a>
 
       <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 flex-shrink-0"></span>
 
       {/* Direct Phone */}
       <a href="tel:+8801960481983" className="inline-flex items-center gap-1.5 text-ivory-muted hover:text-gold transition-colors">
-        <span className="material-symbols-outlined text-[13px] text-gold">call</span>
+        <Phone className="w-3 h-3 text-gold inline-block" />
         <span>STUDIO CONCIERGE: <strong className="text-ivory font-semibold">+880 1960-481983</strong></span>
       </a>
 

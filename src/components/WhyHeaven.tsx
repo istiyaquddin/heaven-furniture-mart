@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Palette, Ruler, Hammer, Store, Truck, CreditCard, ArrowRight, Calendar } from 'lucide-react';
 
 interface WhyHeavenProps {
   onScheduleVisit?: () => void;
@@ -9,37 +10,37 @@ interface WhyHeavenProps {
 export default function WhyHeaven({ onScheduleVisit }: WhyHeavenProps) {
   const pillars = [
     {
-      icon: 'design_services',
+      icon: Palette,
       title: 'Free Design Consultation',
       desc: 'Sit down with our interior design specialists for complimentary spatial planning, color harmony guidance, and material mood boards.',
       tag: 'Spatial Planning'
     },
     {
-      icon: 'straighten',
+      icon: Ruler,
       title: '100% Fully Bespoke',
       desc: 'Never pulled off a shelf. Every bed, sofa, dining table, and wardrobe is built specifically to your floor layout, lifestyle, and aesthetic preference.',
       tag: 'Custom Proportions'
     },
     {
-      icon: 'carpenter',
+      icon: Hammer,
       title: 'Seasoned Timber & In-House Craft',
       desc: 'We exclusively use seasoned Burma Teak, Chittagong Gamari, and kiln-dried Oak shaped by our generational in-house wood artisans.',
       tag: 'Generational Timber'
     },
     {
-      icon: 'storefront',
+      icon: Store,
       title: 'Large Agrabad Showroom',
       desc: 'Visit our physical flagship gallery on Agrabad Access Road to touch fabrics, feel timber weights, and experience ergonomic finishes firsthand.',
       tag: 'Touch & Feel Gallery'
     },
     {
-      icon: 'local_shipping',
+      icon: Truck,
       title: 'Delivery & Installation Included',
       desc: 'Enjoy seamless white-glove transport and on-site expert assembly across Chattogram and nationwide, with zero hidden setup fees.',
       tag: 'White-Glove Transport'
     },
     {
-      icon: 'credit_card',
+      icon: CreditCard,
       title: 'Flexible Payment Options',
       desc: 'Transparent milestone-based commissioning terms and convenient payment schedules designed for hassle-free home transformations.',
       tag: 'Milestone Payments'
@@ -69,39 +70,38 @@ export default function WhyHeaven({ onScheduleVisit }: WhyHeavenProps) {
 
         {/* 6-Card Editorial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {pillars.map((p, idx) => (
-            <div
-              key={p.title}
-              className="card-lift bg-ivory-soft border border-gold-hairline/40 hover:border-gold p-6 sm:p-8 flex flex-col justify-between group shadow-sm transition-all duration-400"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 bg-teal-deep/5 border border-gold/30 flex items-center justify-center text-teal-deep group-hover:bg-teal-deep group-hover:text-gold transition-colors duration-400">
-                    <span className="material-symbols-outlined text-2xl">
-                      {p.icon}
+          {pillars.map((p, idx) => {
+            const IconComponent = p.icon;
+            return (
+              <div
+                key={p.title}
+                className="card-lift bg-ivory-soft border border-gold-hairline/40 hover:border-gold p-6 sm:p-8 flex flex-col justify-between group shadow-sm transition-all duration-400"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-12 h-12 bg-teal-deep/5 border border-gold/30 flex items-center justify-center text-teal-deep group-hover:bg-teal-deep group-hover:text-gold transition-colors duration-400">
+                      <IconComponent className="w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-sans font-bold text-gold-dark/60 tracking-wider">
+                      0{idx + 1}
                     </span>
                   </div>
-                  <span className="text-[10px] font-sans font-bold text-gold-dark/60 tracking-wider">
-                    0{idx + 1}
-                  </span>
+                  <h3 className="font-display text-lg sm:text-xl text-teal-deep font-medium mb-3 group-hover:text-gold transition-colors">
+                    {p.title}
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-brown-soft leading-relaxed mb-6">
+                    {p.desc}
+                  </p>
                 </div>
-                <h3 className="font-display text-lg sm:text-xl text-teal-deep font-medium mb-3 group-hover:text-gold transition-colors">
-                  {p.title}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-brown-soft leading-relaxed mb-6">
-                  {p.desc}
-                </p>
+                <div className="pt-4 border-t border-gold/20 flex items-center justify-between">
+                  <span className="text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.2em] text-gold-dark font-semibold">
+                    {p.tag}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-teal-deep/30 group-hover:text-gold group-hover:translate-x-1 transition-all" />
+                </div>
               </div>
-              <div className="pt-4 border-t border-gold/20 flex items-center justify-between">
-                <span className="text-[9px] sm:text-[10px] font-sans uppercase tracking-[0.2em] text-gold-dark font-semibold">
-                  {p.tag}
-                </span>
-                <span className="material-symbols-outlined text-teal-deep/30 group-hover:text-gold group-hover:translate-x-1 transition-all text-base">
-                  arrow_forward
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* 500+ Trusted Homeowners Banner Callout */}
@@ -126,7 +126,7 @@ export default function WhyHeaven({ onScheduleVisit }: WhyHeavenProps) {
             className="btn-luxury-shimmer bg-gold hover:bg-gold-light text-teal-deep px-8 py-4 font-semibold uppercase tracking-[0.2em] text-xs transition-all duration-300 shadow-lg whitespace-nowrap flex-shrink-0 flex items-center gap-2"
           >
             <span>Schedule Studio Visit</span>
-            <span className="material-symbols-outlined text-sm">calendar_today</span>
+            <Calendar className="w-4 h-4" />
           </a>
         </div>
       </div>

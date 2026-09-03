@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useId } from 'react';
+import { Receipt } from 'lucide-react';
 
 export default function Estimator() {
   const [categoryName, setCategoryName] = useState('Living Sofa Suite (3+2+1 / Curved L-Shape)');
@@ -171,7 +172,7 @@ export default function Estimator() {
           {/* Right Live Quotation Card */}
           <div className="lg:col-span-5 bg-teal-surface border-2 border-gold p-6 sm:p-10 shadow-2xl relative flex flex-col justify-between">
             <div className="absolute top-4 right-4 text-gold/20">
-              <span className="material-symbols-outlined text-4xl">receipt_long</span>
+              <Receipt className="w-10 h-10" />
             </div>
 
             <div>

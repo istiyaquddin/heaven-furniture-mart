@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import { Award, Trees, Ruler, MapPin, ArrowRight, Store } from 'lucide-react';
 
 export default function Philosophy() {
   return (
@@ -18,7 +20,7 @@ export default function Philosophy() {
           <div className="lg:col-span-6 relative pb-8 sm:pb-12 lg:pb-0">
             {/* Top-Left Brass Heritage Seal */}
             <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 z-30 bg-[#0A1616] text-gold border border-gold/40 px-3.5 py-1.5 shadow-xl flex items-center gap-2 transition-transform duration-300 hover:scale-105">
-              <span className="material-symbols-outlined text-gold text-[15px]">verified</span>
+              <Award className="w-4 h-4 text-gold" />
               <span className="font-sans text-[9px] sm:text-[10px] uppercase tracking-[0.22em] font-semibold text-ivory">
                 Est. 2020 · Chattogram
               </span>
@@ -26,34 +28,38 @@ export default function Philosophy() {
 
             {/* Primary MD Portrait Frame with Deep Glow */}
             <div className="relative bg-teal-deep p-1.5 sm:p-2 border border-gold/35 shadow-2xl transition-all duration-500 hover:border-gold hover:shadow-[0_25px_60px_-15px_rgba(12,28,28,0.3)]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-teal-deep group">
-                <img
+              <div className="relative overflow-hidden aspect-[16/9] bg-teal-deep group">
+                <Image
                   src="/assets/images/md-portrait.jpg"
-                  alt="Abul Kalam Bhuiyan, Managing Director and Founder of Heaven Furniture Mart"
-                  className="w-full h-full object-cover object-top sm:object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  alt="Abul Kalam Bhuiyan, Managing Director and Founder of Heaven Furniture Mart at the Chittagong Furniture Fair"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-103"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1616]/85 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1616]/70 via-transparent to-transparent pointer-events-none" />
 
                 {/* Subtle In-Frame Label */}
-                <div className="absolute bottom-4 left-4 right-4 z-10 flex items-end justify-between">
-                  <div>
-                    <span className="text-[9px] uppercase tracking-[0.25em] text-gold font-bold block mb-1">Founder & Managing Director</span>
-                    <h3 className="font-display text-base sm:text-xl text-ivory font-medium">Abul Kalam Bhuiyan</h3>
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3.5 sm:left-3.5 sm:right-3.5 z-10 flex items-end justify-between">
+                  <div className="bg-teal-deep/85 backdrop-blur-md border border-gold/30 px-3 py-1.5 shadow-lg">
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-gold font-bold block">Founder & Managing Director</span>
+                    <h3 className="font-display text-xs sm:text-base text-ivory font-medium leading-tight">Abul Kalam Bhuiyan</h3>
                   </div>
-                  <span className="text-[9px] bg-gold/20 border border-gold/50 text-gold-light px-2 py-0.5 uppercase tracking-widest font-sans font-semibold backdrop-blur-sm">
-                    Agrabad Atelier
+                  <span className="text-[8px] sm:text-[9px] bg-teal-deep/90 border border-gold/40 text-gold-light px-2.5 py-1 uppercase tracking-widest font-sans font-semibold backdrop-blur-md shadow-lg hidden sm:inline-block">
+                    Chattogram Fair Keynote
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Secondary Workshop Joinery Inset (Docked Neatly with Card Lift) */}
-            <div className="card-lift absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-6 w-44 sm:w-60 bg-ivory p-1.5 sm:p-2 border border-gold/40 shadow-2xl z-20">
+            {/* Secondary Workshop Joinery Inset (Docked Neatly at Bottom-Right without obscuring podium) */}
+            <div className="card-lift absolute -bottom-6 right-3 sm:-bottom-8 sm:right-6 w-40 sm:w-52 bg-ivory p-1.5 sm:p-2 border border-gold/40 shadow-2xl z-20">
               <div className="relative overflow-hidden aspect-[16/11]">
-                <img
+                <Image
                   src="/assets/images/craftsman.jpg"
                   alt="Master artisan hand joinery in Heaven Furniture Mart Chattogram workshop"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  fill
+                  sizes="(max-width: 640px) 160px, 210px"
+                  className="object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
               <div className="bg-teal-deep text-ivory p-2 mt-1.5 flex items-center justify-between text-[9px] uppercase tracking-wider">
@@ -78,15 +84,15 @@ export default function Philosophy() {
 
             {/* Main Headline */}
             <h2 className="font-display text-2xl sm:text-4xl lg:text-[42px] font-medium text-teal-deep leading-[1.18] mb-6">
-              "Designed. Crafted.<br />
-              <span className="italic font-serif text-gold-dark">Customized for You."</span>
+              &ldquo;Designed. Crafted.<br />
+              <span className="italic font-serif text-gold-dark">Customized for You.&rdquo;</span>
             </h2>
 
             {/* Luxury Embossed Pull Quote Card with Gold Border Glow */}
             <div className="relative bg-gradient-to-br from-gold/10 via-gold/5 to-transparent border-l-[3px] border-gold p-5 sm:p-6 mb-6 shadow-sm border-y border-r border-gold/20 transition-all duration-400 hover:border-r-gold/50 hover:shadow-md">
               <span className="font-serif text-gold/30 text-5xl sm:text-6xl absolute -top-3 left-3 select-none pointer-events-none leading-none">“</span>
               <blockquote className="font-display text-base sm:text-lg md:text-xl italic text-brown-deep leading-relaxed relative z-10 mb-4 pl-4 sm:pl-6">
-                "At Heaven Furniture Mart, we believe furniture is more than just function; it is a reflection of lifestyle, taste, and comfort. Every piece we create is designed to bring lasting elegance into the homes of our clients."
+                &ldquo;At Heaven Furniture Mart, we believe furniture is more than just function; it is a reflection of lifestyle, taste, and comfort. Every piece we create is designed to bring lasting elegance into the homes of our clients.&rdquo;
               </blockquote>
               
               <div className="flex items-center justify-between border-t border-gold/20 pt-3.5 pl-4 sm:pl-6">
@@ -114,7 +120,7 @@ export default function Philosophy() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
               <div className="card-lift border border-gold/25 bg-white/70 p-3 hover:border-gold hover:bg-white transition-all duration-300">
                 <div className="flex items-center gap-1.5 mb-1 text-gold-dark">
-                  <span className="material-symbols-outlined text-[16px]">forest</span>
+                  <Trees className="w-4 h-4" />
                   <span className="font-sans font-bold text-[10px] uppercase tracking-wider text-teal-deep">Seasoned Timber</span>
                 </div>
                 <p className="text-[11px] text-brown-soft leading-snug">Burma Teak & Gamari seasoned to 8–12% moisture.</p>
@@ -122,7 +128,7 @@ export default function Philosophy() {
 
               <div className="card-lift border border-gold/25 bg-white/70 p-3 hover:border-gold hover:bg-white transition-all duration-300">
                 <div className="flex items-center gap-1.5 mb-1 text-gold-dark">
-                  <span className="material-symbols-outlined text-[16px]">straighten</span>
+                  <Ruler className="w-4 h-4" />
                   <span className="font-sans font-bold text-[10px] uppercase tracking-wider text-teal-deep">Custom Scale</span>
                 </div>
                 <p className="text-[11px] text-brown-soft leading-snug">Built to your architectural blueprints & room dimensions.</p>
@@ -130,7 +136,7 @@ export default function Philosophy() {
 
               <div className="card-lift border border-gold/25 bg-white/70 p-3 hover:border-gold hover:bg-white transition-all duration-300">
                 <div className="flex items-center gap-1.5 mb-1 text-gold-dark">
-                  <span className="material-symbols-outlined text-[16px]">pin_drop</span>
+                  <MapPin className="w-4 h-4" />
                   <span className="font-sans font-bold text-[10px] uppercase tracking-wider text-teal-deep">Agrabad Studio</span>
                 </div>
                 <p className="text-[11px] text-brown-soft leading-snug">Full-scale room vignettes opposite RAK Ceramics.</p>
@@ -144,13 +150,13 @@ export default function Philosophy() {
                 className="btn-luxury-shimmer inline-flex items-center gap-2 bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep px-5 sm:px-6 py-3 text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md group cursor-pointer"
               >
                 <span>Explore the Bespoke Process</span>
-                <span className="material-symbols-outlined text-[15px] transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
                 href="#showroom"
                 className="inline-flex items-center gap-2 border border-teal-deep/30 hover:border-gold text-teal-deep hover:text-gold px-4 sm:px-5 py-3 text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 bg-white/50 hover:bg-white shadow-xs group"
               >
-                <span className="material-symbols-outlined text-[15px] text-gold transition-transform group-hover:scale-110">storefront</span>
+                <Store className="w-4 h-4 text-gold transition-transform group-hover:scale-110" />
                 <span>Visit Showroom</span>
               </a>
             </div>

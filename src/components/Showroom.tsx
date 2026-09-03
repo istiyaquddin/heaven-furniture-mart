@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
+import { MapPin, Clock, Phone, Calendar, Navigation } from 'lucide-react';
 import { studioVignettes } from '@/data/vignettes';
 
 export default function Showroom() {
@@ -42,10 +44,12 @@ export default function Showroom() {
           {/* Interactive Multi-Vignette Studio Showcase */}
           <div className="lg:col-span-7 flex flex-col gap-4">
             <div className="relative aspect-[16/10] bg-teal-deep border border-gold shadow-2xl overflow-hidden group">
-              <img
+              <Image
                 src={currentVignette.img}
                 alt={currentVignette.title}
-                className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-105 ${
+                fill
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className={`object-cover transition-all duration-500 ease-out group-hover:scale-105 ${
                   isFading ? 'opacity-20 scale-[0.98]' : 'opacity-100 scale-100'
                 }`}
               />
@@ -77,8 +81,8 @@ export default function Showroom() {
                         : 'border border-gold/20 opacity-60 hover:opacity-100 hover:border-gold/60'
                     }`}
                   >
-                    <img src={v.img} alt={v.label} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-                    <span className="absolute bottom-0 inset-x-0 bg-teal-deep/90 text-ivory text-[8px] sm:text-[9px] uppercase tracking-wider py-1 px-1 text-center font-semibold truncate block">
+                    <Image src={v.img} alt={v.label} fill sizes="(max-width: 640px) 25vw, 150px" className="object-cover transition-transform duration-500 hover:scale-110" />
+                    <span className="absolute bottom-0 inset-x-0 bg-teal-deep/90 text-ivory text-[8px] sm:text-[9px] uppercase tracking-wider py-1 px-1 text-center font-semibold truncate block z-10">
                       {v.label}
                     </span>
                   </button>
@@ -100,7 +104,7 @@ export default function Showroom() {
 
             <div className="space-y-4 text-xs sm:text-sm text-brown-soft border-t border-gold/20 pt-6">
               <div className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-gold text-lg mt-0.5">location_on</span>
+                <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-teal-deep block font-semibold">Flagship Gallery Address:</strong>
                   <a
@@ -115,7 +119,7 @@ export default function Showroom() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-gold text-lg mt-0.5">schedule</span>
+                <Clock className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-teal-deep block font-semibold">Studio Visiting Hours:</strong>
                   <p>10:00 AM – 9:00 PM (Open 7 Days a Week)</p>
@@ -123,7 +127,7 @@ export default function Showroom() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-gold text-lg mt-0.5">call</span>
+                <Phone className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-teal-deep block font-semibold">Concierge & Designer Hotline:</strong>
                   <p><a href="tel:+8801960481983" className="hover:text-gold transition-colors">+880 1960-481983</a></p>
@@ -139,7 +143,7 @@ export default function Showroom() {
                 className="btn-luxury-shimmer w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 font-semibold uppercase tracking-[0.2em] text-xs text-center flex items-center justify-center gap-2 transition-colors shadow-md active:scale-95"
               >
                 <span>Schedule VIP Studio Appointment</span>
-                <span className="material-symbols-outlined text-sm">event</span>
+                <Calendar className="w-4 h-4" />
               </a>
               <a
                 href="https://maps.app.goo.gl/pwe2VJWeLeTdTw6v9"
@@ -148,7 +152,7 @@ export default function Showroom() {
                 className="w-full bg-teal-deep hover:bg-gold text-ivory hover:text-teal-deep py-3.5 font-semibold uppercase tracking-[0.2em] text-xs text-center flex items-center justify-center gap-2 transition-colors border border-gold/40 active:scale-95"
               >
                 <span>Get Directions (Google Maps)</span>
-                <span className="material-symbols-outlined text-sm">map</span>
+                <Navigation className="w-4 h-4" />
               </a>
             </div>
           </div>

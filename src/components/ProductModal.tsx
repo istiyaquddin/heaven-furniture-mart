@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import Image from 'next/image';
+import { MessageSquare, X } from 'lucide-react';
 import { Product } from '@/data/products';
 
 interface ProductModalProps {
@@ -32,20 +34,22 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep flex items-center justify-center transition-colors shadow-md"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep flex items-center justify-center transition-colors shadow-md cursor-pointer"
           aria-label="Close Modal"
         >
-          ✕
+          <X className="w-4 h-4" />
         </button>
 
         {/* Modal Image */}
-        <div className="md:w-1/2 aspect-[4/3] md:aspect-auto bg-teal-deep relative overflow-hidden flex-shrink-0">
-          <img
+        <div className="md:w-1/2 aspect-[4/3] md:aspect-auto bg-teal-deep relative overflow-hidden flex-shrink-0 min-h-[260px] md:min-h-[400px]">
+          <Image
             src={product.image}
             alt={product.title}
-            className="w-full h-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
           />
-          <div className="absolute top-4 left-4 bg-teal-deep/90 backdrop-blur-md border border-gold/40 text-gold-light text-[9px] uppercase tracking-[0.2em] px-3 py-1 font-semibold">
+          <div className="absolute top-4 left-4 bg-teal-deep/90 backdrop-blur-md border border-gold/40 text-gold-light text-[9px] uppercase tracking-[0.2em] px-3 py-1 font-semibold z-10">
             {product.tag}
           </div>
         </div>
@@ -91,7 +95,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
               className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 font-semibold uppercase tracking-[0.2em] text-xs text-center flex items-center justify-center gap-2 transition-colors shadow-md"
             >
               <span>Inquire on WhatsApp</span>
-              <span className="material-symbols-outlined text-sm">chat</span>
+              <MessageSquare className="w-4 h-4" />
             </a>
             <p className="text-[10px] text-center text-brown-soft/70">
               Direct response from our Agrabad senior bespoke furniture consultant.

@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   onOpenQuote: () => void;
@@ -11,10 +13,13 @@ export default function Hero({ onOpenQuote }: HeroProps) {
     <section className="relative min-h-[85vh] sm:min-h-[92vh] flex items-center bg-teal-deep text-ivory overflow-hidden border-b border-gold-hairline/30">
       {/* Ambient Background Visual with Parallax Slow Zoom */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/assets/images/hero-sofa.png"
           alt="Heaven Furniture Mart Bespoke Curved Velvet Sofa and Marble Suite"
-          className="w-full h-full object-cover object-center scale-100 animate-subtle-zoom opacity-45"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center scale-100 animate-subtle-zoom opacity-45"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/85 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-deep via-transparent to-teal-deep/40" />
@@ -49,7 +54,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
               className="btn-luxury-shimmer bg-gold hover:bg-gold-light text-teal-deep px-8 py-4 sm:py-4.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] transition-all duration-300 shadow-xl flex items-center justify-center gap-3 text-center group cursor-pointer"
             >
               <span>Book Free Design Consultation</span>
-              <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-x-1.5">arrow_forward</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
             </button>
             <a
               href="#collections"

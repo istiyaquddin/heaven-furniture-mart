@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { ArrowRight, Menu, X, MapPin, Clock, Phone } from 'lucide-react';
 
 interface HeaderProps {
   onOpenQuote: () => void;
@@ -45,9 +47,12 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           {/* Brand Logo & Identity */}
           <a href="#" className="flex items-center gap-2.5 sm:gap-3.5 group flex-shrink-0 cursor-pointer" aria-label="Heaven Furniture Mart Home">
             <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 border border-gold/40 p-1 bg-teal-deep flex items-center justify-center transition-all duration-500 group-hover:border-gold group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(197,160,89,0.4)] flex-shrink-0">
-              <img
+              <Image
                 src="/assets/images/logo.png"
                 alt="Heaven Furniture Mart Monogram"
+                width={48}
+                height={48}
+                priority
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
@@ -81,18 +86,20 @@ export default function Header({ onOpenQuote }: HeaderProps) {
               className="btn-luxury-shimmer bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep px-4 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 border border-gold/40 shadow-sm flex items-center gap-2 group cursor-pointer"
             >
               <span>Request a Quote</span>
-              <span className="material-symbols-outlined text-[15px] hidden xs:inline transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+              <ArrowRight className="w-3.5 h-3.5 hidden xs:inline transition-transform duration-300 group-hover:translate-x-1" />
             </button>
 
             {/* Mobile Hamburger Trigger */}
             <button
               onClick={toggleMobile}
-              className="xl:hidden p-2 text-teal-deep hover:text-gold focus:outline-none transition-colors"
+              className="xl:hidden p-2 text-teal-deep hover:text-gold focus:outline-none transition-colors cursor-pointer"
               aria-label="Toggle Navigation Drawer"
             >
-              <span className="material-symbols-outlined text-2xl sm:text-3xl">
-                {isMobileMenuOpen ? 'close' : 'menu'}
-              </span>
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -116,13 +123,15 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           <div className="flex items-center justify-between pb-6 border-b border-gold/20">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 border border-gold/40 p-1 bg-teal-card flex items-center justify-center">
-                <img src="/assets/images/logo.png" alt="Heaven Logo" className="w-full h-full object-cover" />
+                <Image src="/assets/images/logo.png" alt="Heaven Logo" width={32} height={32} className="w-full h-full object-cover" />
               </div>
               <span className="font-display font-bold tracking-[0.2em] text-ivory uppercase text-sm">
                 HEAVEN
               </span>
             </div>
-            <button onClick={toggleMobile} className="text-ivory/70 hover:text-gold p-1 text-xl">✕</button>
+            <button onClick={toggleMobile} className="text-ivory/70 hover:text-gold p-1 cursor-pointer" aria-label="Close menu">
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
           <nav className="mt-8 space-y-5">
@@ -149,13 +158,19 @@ export default function Header({ onOpenQuote }: HeaderProps) {
 
           <div className="mt-8 pt-6 border-t border-gold/20 space-y-2 text-xs text-ivory-muted/70">
             <p className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-gold text-[16px]">location_on</span>
+              <MapPin className="w-4 h-4 text-gold flex-shrink-0" />
               <a href="https://maps.app.goo.gl/pwe2VJWeLeTdTw6v9" target="_blank" rel="noopener noreferrer" className="text-ivory hover:text-gold underline">
                 Agrabad Access Road, Chattogram
               </a>
             </p>
-            <p className="flex items-center gap-2"><span className="material-symbols-outlined text-gold text-[16px]">schedule</span> 10:00 AM – 9:00 PM (Daily)</p>
-            <p className="flex items-center gap-2"><span className="material-symbols-outlined text-gold text-[16px]">call</span> <a href="tel:+8801960481983" className="text-ivory hover:text-gold">+880 1960-481983</a></p>
+            <p className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-gold flex-shrink-0" />
+              <span>10:00 AM – 9:00 PM (Daily)</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-gold flex-shrink-0" />
+              <a href="tel:+8801960481983" className="text-ivory hover:text-gold">+880 1960-481983</a>
+            </p>
           </div>
         </div>
 
