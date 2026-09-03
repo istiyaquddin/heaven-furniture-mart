@@ -54,45 +54,46 @@ export default function Philosophy() {
               </div>
             </div>
 
-            {/* 2. Secondary Feature: Master Workshop Joinery Card */}
+            {/* 2. Secondary Feature: BFIOA Award & National Recognition Card */}
             <div className="card-lift bg-white border border-gold-hairline/60 hover:border-gold p-4 sm:p-5 shadow-lg flex flex-col sm:flex-row items-center gap-4 sm:gap-5 transition-all duration-400">
-              <div className="relative aspect-[16/11] w-full sm:w-44 lg:w-48 bg-teal-deep overflow-hidden flex-shrink-0 border border-gold/30">
+              <div className="relative aspect-[4/3] w-full sm:w-48 lg:w-52 bg-teal-deep overflow-hidden flex-shrink-0 border border-gold/30">
                 <Image
-                  src="/assets/images/craftsman.jpg"
-                  alt="Generational wood artisan at Heaven Furniture Mart workshop"
+                  src="/assets/images/bfioa-recognition.jpg"
+                  alt="Managing Director Abul Kalam Bhuiyan receiving 1st Prize at the Chittagong Furniture Fair BFIOA"
                   fill
-                  sizes="(max-width: 640px) 100vw, 200px"
-                  className="object-cover transition-transform duration-500 hover:scale-108"
+                  sizes="(max-width: 640px) 100vw, 220px"
+                  className="object-cover object-center transition-transform duration-500 hover:scale-108"
                 />
-                <div className="absolute top-2 left-2 bg-teal-deep/90 text-gold text-[8px] uppercase tracking-widest px-2 py-0.5 font-bold border border-gold/30">
-                  Workshop
+                <div className="absolute top-2 left-2 bg-[#0A1616]/90 text-gold text-[8px] uppercase tracking-widest px-2 py-0.5 font-bold border border-gold/40 flex items-center gap-1 shadow-sm">
+                  <Award className="w-3 h-3 text-gold" />
+                  1st Prize
                 </div>
               </div>
 
               <div className="flex-1 space-y-2 text-left w-full">
                 <div className="flex items-center justify-between">
                   <span className="text-[9px] font-sans font-bold uppercase tracking-[0.22em] text-gold-dark">
-                    Artisanal Heritage
+                    Nationwide Honor · BFIOA
                   </span>
                   <span className="flex items-center gap-1 text-[10px] text-teal-deep font-semibold">
-                    <Sparkles className="w-3 h-3 text-gold" /> In-House
+                    <Sparkles className="w-3 h-3 text-gold" /> Fair 2024
                   </span>
                 </div>
                 <h4 className="font-display text-base sm:text-lg text-teal-deep font-medium leading-snug">
-                  Generational Wood Joinery
+                  1st Prize for Bespoke Mastery
                 </h4>
                 <p className="font-sans text-xs text-brown-soft leading-relaxed">
-                  Every curved sofa frame, fluted post bed, and dining pedestal is hand-planed and assembled in our Chattogram atelier with traditional mortise-and-tenon joints.
+                  Honored with the prestigious 1st Prize Award at the 14th Chittagong Furniture Fair by BFIOA and distinguished dignitaries for outstanding craftsmanship and architectural styling.
                 </p>
-                <div className="pt-2 flex flex-wrap items-center gap-3 text-[10px] text-brown-charcoal font-semibold">
-                  <span className="inline-flex items-center gap-1 text-teal-deep">
-                    <CheckCircle2 className="w-3 h-3 text-gold" /> Burma Teak
+                <div className="pt-1.5 flex flex-wrap items-center gap-2.5 text-[10px] text-brown-charcoal font-semibold">
+                  <span className="inline-flex items-center gap-1 text-teal-deep bg-ivory-soft border border-gold/20 px-2 py-0.5">
+                    <CheckCircle2 className="w-3 h-3 text-gold" /> 1st Prize Winner
                   </span>
-                  <span className="inline-flex items-center gap-1 text-teal-deep">
-                    <CheckCircle2 className="w-3 h-3 text-gold" /> Kiln-Dried 8–12%
+                  <span className="inline-flex items-center gap-1 text-teal-deep bg-ivory-soft border border-gold/20 px-2 py-0.5">
+                    <CheckCircle2 className="w-3 h-3 text-gold" /> BFIOA Recognized
                   </span>
-                  <span className="inline-flex items-center gap-1 text-teal-deep">
-                    <CheckCircle2 className="w-3 h-3 text-gold" /> Agrabad Atelier
+                  <span className="inline-flex items-center gap-1 text-teal-deep bg-ivory-soft border border-gold/20 px-2 py-0.5">
+                    <CheckCircle2 className="w-3 h-3 text-gold" /> Industry Acclaim
                   </span>
                 </div>
               </div>
