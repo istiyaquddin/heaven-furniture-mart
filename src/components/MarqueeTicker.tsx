@@ -5,7 +5,7 @@ import { ExternalLink, Phone } from 'lucide-react';
 
 export default function MarqueeTicker() {
   const content = (
-    <div className="flex items-center gap-8 sm:gap-12 px-6 sm:px-8 flex-shrink-0">
+    <div className="flex items-center gap-8 sm:gap-12 px-6 sm:px-8 shrink-0">
       {/* Showroom Link */}
       <a
         href="https://maps.app.goo.gl/pwe2VJWeLeTdTw6v9"
@@ -13,7 +13,7 @@ export default function MarqueeTicker() {
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 text-gold-light hover:text-ivory transition-colors group"
       >
-        <span className="relative flex h-2 w-2 flex-shrink-0 items-center justify-center">
+        <span className="relative flex h-2 w-2 shrink-0 items-center justify-center">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span>
         </span>
@@ -24,7 +24,7 @@ export default function MarqueeTicker() {
         <ExternalLink className="w-3 h-3 text-gold inline-block" />
       </a>
 
-      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 flex-shrink-0"></span>
+      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 shrink-0"></span>
 
       {/* Direct Phone */}
       <a href="tel:+8801960481983" className="inline-flex items-center gap-1.5 text-ivory-muted hover:text-gold transition-colors">
@@ -32,7 +32,7 @@ export default function MarqueeTicker() {
         <span>STUDIO CONCIERGE: <strong className="text-ivory font-semibold">+880 1960-481983</strong></span>
       </a>
 
-      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 flex-shrink-0"></span>
+      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 shrink-0"></span>
 
       {/* WhatsApp */}
       <a
@@ -47,39 +47,43 @@ export default function MarqueeTicker() {
         <span>WHATSAPP VIP INQUIRIES · 7 DAYS A WEEK</span>
       </a>
 
-      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 flex-shrink-0"></span>
+      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 shrink-0"></span>
 
       {/* Tagline */}
       <span className="text-ivory-muted tracking-[0.18em]">
         BESPOKE COMMISSIONS: <span className="text-gold font-semibold">DESIGNED · CRAFTED · CUSTOMIZED</span>
       </span>
 
-      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 flex-shrink-0"></span>
+      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 shrink-0"></span>
 
       {/* Quality Pillar */}
       <span className="text-ivory-muted">
         SEASONED BURMA TEAK & GAMARI <span className="text-gold font-semibold">(8–12% KILN-DRIED MOISTURE)</span>
       </span>
 
-      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 flex-shrink-0"></span>
+      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 shrink-0"></span>
 
       {/* Founder Story */}
       <span className="text-ivory-muted">
         FOUNDED 2020 BY <span className="text-ivory font-semibold">MD ABUL KALAM BHUIYAN</span> · CHATTOGRAM
       </span>
 
-      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 flex-shrink-0"></span>
+      <span className="inline-block w-1.5 h-1.5 rotate-45 border border-gold/50 bg-gold/20 shrink-0"></span>
     </div>
   );
 
   return (
-    <div className="ticker-container relative overflow-hidden bg-[#0A1616] text-ivory border-y border-gold-hairline/30 h-10 sm:h-12 flex items-center text-[10px] sm:text-[11.5px] tracking-[0.16em] uppercase font-medium select-none shadow-lg z-20">
+    <div
+      className="ticker-container relative overflow-hidden bg-[#0A1616] text-ivory border-y border-gold/30 h-12 sm:h-14 flex items-center text-[10px] sm:text-[11.5px] tracking-[0.16em] uppercase font-medium select-none shadow-lg z-20"
+      role="region"
+      aria-label="Studio highlights and contact links"
+    >
       {/* Edge Fading Vignettes */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#0A1616] via-[#0A1616]/85 to-transparent z-10" />
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#0A1616] via-[#0A1616]/85 to-transparent z-10" />
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-linear-to-r from-[#0A1616] via-[#0A1616]/85 to-transparent z-10" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-linear-to-l from-[#0A1616] via-[#0A1616]/85 to-transparent z-10" />
 
       {/* Scrolling Track (Duplicated 2x for seamless infinite loop) */}
-      <div className="ticker-track flex items-center">
+      <div className="ticker-track flex items-center whitespace-nowrap">
         {content}
         <div aria-hidden="true" className="flex items-center">
           {content}

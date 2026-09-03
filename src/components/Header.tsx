@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { ArrowRight, Menu, X, MapPin, Clock, Phone } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 interface HeaderProps {
   onOpenQuote: () => void;
@@ -14,7 +13,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 25);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -22,175 +21,145 @@ export default function Header({ onOpenQuote }: HeaderProps) {
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.classList.add('overflow-hidden');
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.style.overflow = '';
     }
   }, [isMobileMenuOpen]);
 
   const toggleMobile = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobile = () => setIsMobileMenuOpen(false);
 
   return (
     <>
       <header
-        id="main-header"
-        className={`sticky top-0 z-40 bg-ivory/95 backdrop-blur-md border-b border-gold-hairline/30 transition-all duration-400 ease-out ${
-          isScrolled ? 'shadow-md py-1' : ''
+        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ease-out flex items-center justify-between px-6 sm:px-10 lg:px-16 ${
+          isScrolled
+            ? 'h-18 sm:h-20 bg-[#0e2322]/92 backdrop-blur-md shadow-[0_1px_0_rgba(182,145,81,0.2)] text-[#f2eee4]'
+            : 'h-20 sm:h-24 bg-transparent text-[#f2eee4]'
         }`}
       >
-        <div
-          id="header-container"
-          className={`max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-between gap-4 transition-all duration-400 ${
-            isScrolled ? 'h-16 sm:h-18 lg:h-20' : 'h-18 sm:h-20 lg:h-24'
-          }`}
-        >
-          {/* Brand Logo & Identity */}
-          <a href="#" className="flex items-center gap-2.5 sm:gap-3.5 group flex-shrink-0 cursor-pointer" aria-label="Heaven Furniture Mart Home">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 border border-gold/40 p-1 bg-teal-deep flex items-center justify-center transition-all duration-500 group-hover:border-gold group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(197,160,89,0.4)] flex-shrink-0">
-              <Image
-                src="/assets/images/logo.png"
-                alt="Heaven Furniture Mart Monogram"
-                width={48}
-                height={48}
-                priority
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <span className="font-display font-bold tracking-[0.25em] text-teal-deep uppercase text-base sm:text-lg md:text-xl lg:text-2xl leading-none group-hover:text-gold transition-colors duration-300">
-                HEAVEN
-              </span>
-              <span className="font-sans text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.32em] text-gold-dark uppercase font-semibold mt-1">
-                FURNITURE MART
-              </span>
-            </div>
-          </a>
-
-          {/* Desktop Navigation Links with Expanding Gold Hairline Underline */}
-          <nav className="hidden xl:flex items-center gap-7 2xl:gap-9 text-xs uppercase tracking-[0.18em] font-semibold text-brown-charcoal">
-            <a href="#philosophy" className="nav-link-luxury hover:text-gold transition-colors py-1">Philosophy</a>
-            <a href="#collections" className="nav-link-luxury hover:text-gold transition-colors py-1">Collections</a>
-            <a href="#bespoke-atelier" className="nav-link-luxury hover:text-gold transition-colors py-1 flex items-center gap-1.5 group">
-              <span>Bespoke Atelier</span>
-              <span className="text-[9px] bg-gold/20 text-gold-dark border border-gold/40 px-1.5 py-0.2 uppercase tracking-widest font-bold group-hover:bg-gold group-hover:text-teal-deep transition-colors">Custom</span>
-            </a>
-            <a href="#why-heaven" className="nav-link-luxury hover:text-gold transition-colors py-1">The Standard</a>
-            <a href="#milestones" className="nav-link-luxury hover:text-gold transition-colors py-1">Milestones</a>
-            <a href="#showroom" className="nav-link-luxury hover:text-gold transition-colors py-1">Showroom</a>
-          </nav>
-
-          {/* Header Action CTA & Mobile Trigger */}
-          <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
-            <button
-              onClick={onOpenQuote}
-              className="btn-luxury-shimmer bg-teal-deep text-ivory hover:bg-gold hover:text-teal-deep px-4 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 border border-gold/40 shadow-sm flex items-center gap-2 group cursor-pointer"
-            >
-              <span>Request a Consultation</span>
-              <ArrowRight className="w-3.5 h-3.5 hidden xs:inline transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-
-            {/* Mobile Hamburger Trigger */}
-            <button
-              onClick={toggleMobile}
-              className="xl:hidden p-2 text-teal-deep hover:text-gold focus:outline-none transition-colors cursor-pointer"
-              aria-label="Toggle Navigation Drawer"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+        {/* Minimal Monogram & Brand */}
+        <a href="#top" className="flex items-center gap-2.5 group cursor-pointer" aria-label="Heaven Furniture Mart Home">
+          <span className="w-8 h-8 border border-[#b69151] text-[#b69151] font-editorial-serif text-xl flex items-center justify-center leading-none transition-transform duration-300 group-hover:scale-105">
+            H
+          </span>
+          <div className="flex flex-col">
+            <strong className="tracking-[0.16em] text-[13px] font-semibold font-editorial-sans text-[#f2eee4] leading-tight group-hover:text-[#d6bf8d] transition-colors">
+              HEAVEN
+            </strong>
+            <small className="font-editorial-mono text-[8px] tracking-[0.18em] text-[#d6bf8d] uppercase leading-none mt-1">
+              FURNITURE MART
+            </small>
           </div>
+        </a>
+
+        {/* Minimal Desktop Nav Links */}
+        <nav className="hidden lg:flex items-center gap-8 xl:gap-10 text-[13px] tracking-[0.06em] text-[#f2eee4]/90 font-editorial-sans font-medium" aria-label="Main navigation">
+          <a
+            href="#collections"
+            className="relative py-1 hover:text-[#d6bf8d] transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-full after:h-[1px] after:bg-[#b69151] hover:after:right-0 after:transition-all after:duration-200"
+          >
+            Collections
+          </a>
+          <a
+            href="#craft"
+            className="relative py-1 hover:text-[#d6bf8d] transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-full after:h-[1px] after:bg-[#b69151] hover:after:right-0 after:transition-all after:duration-200"
+          >
+            The bespoke way
+          </a>
+          <a
+            href="#philosophy"
+            className="relative py-1 hover:text-[#d6bf8d] transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-full after:h-[1px] after:bg-[#b69151] hover:after:right-0 after:transition-all after:duration-200"
+          >
+            Philosophy
+          </a>
+          <a
+            href="#journey"
+            className="relative py-1 hover:text-[#d6bf8d] transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-full after:h-[1px] after:bg-[#b69151] hover:after:right-0 after:transition-all after:duration-200"
+          >
+            Milestones
+          </a>
+          <a
+            href="#showroom"
+            className="relative py-1 hover:text-[#d6bf8d] transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:right-full after:h-[1px] after:bg-[#b69151] hover:after:right-0 after:transition-all after:duration-200"
+          >
+            Showroom
+          </a>
+        </nav>
+
+        {/* Header Action: Simple Hairline Text CTA */}
+        <div className="flex items-center gap-5">
+          <button
+            onClick={onOpenQuote}
+            className="cursor-pointer group flex items-center gap-1.5 text-[12px] font-semibold text-[#f2eee4] pb-0.5 border-b border-[#f2eee4] hover:text-[#d6bf8d] hover:border-[#d6bf8d] transition-colors"
+          >
+            <span className="tracking-[0.04em]">Request a consultation</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#b69151] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </button>
+
+          {/* Minimal 2-Line Mobile Hamburger */}
+          <button
+            type="button"
+            onClick={toggleMobile}
+            className="lg:hidden flex flex-col justify-center gap-1.5 w-8 h-8 p-1 focus:outline-none cursor-pointer"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span
+              className={`block h-[1.5px] bg-[#f2eee4] transition-transform duration-300 ${
+                isMobileMenuOpen ? 'w-full translate-y-[4.5px] rotate-45' : 'w-full'
+              }`}
+            />
+            <span
+              className={`block h-[1.5px] bg-[#f2eee4] transition-transform duration-300 ${
+                isMobileMenuOpen ? 'w-full -translate-y-[3px] -rotate-45' : 'w-3/4 self-end'
+              }`}
+            />
+          </button>
         </div>
       </header>
 
-      {/* Mobile Drawer Backdrop */}
+      {/* Mobile Drawer Menu */}
       <div
-        onClick={toggleMobile}
-        className={`fixed inset-0 z-50 bg-teal-deep/80 backdrop-blur-md transition-opacity duration-300 xl:hidden ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      />
-
-      {/* Mobile Slide-Out Drawer */}
-      <aside
-        className={`fixed top-0 right-0 bottom-0 z-50 w-[85vw] max-w-sm bg-teal-deep text-ivory p-6 sm:p-8 flex flex-col justify-between border-l border-gold/30 shadow-2xl transition-transform duration-300 ease-out xl:hidden ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed inset-0 z-30 bg-[#0e2322]/98 backdrop-blur-xl transition-all duration-400 flex flex-col justify-center px-8 sm:px-14 py-20 lg:hidden ${
+          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
       >
-        <div>
-          <div className="flex items-center justify-between pb-6 border-b border-gold/20">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 border border-gold/40 p-1 bg-teal-card flex items-center justify-center">
-                <Image src="/assets/images/logo.png" alt="Heaven Logo" width={32} height={32} className="w-full h-full object-cover" />
-              </div>
-              <span className="font-display font-bold tracking-[0.2em] text-ivory uppercase text-sm">
-                HEAVEN
-              </span>
-            </div>
-            <button onClick={toggleMobile} className="text-ivory/70 hover:text-gold p-1 cursor-pointer" aria-label="Close menu">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+        <nav className="flex flex-col gap-6 text-2xl font-editorial-serif text-[#f2eee4]">
+          <a href="#collections" onClick={closeMobile} className="hover:text-[#d6bf8d] transition-colors">
+            Collections
+          </a>
+          <a href="#craft" onClick={closeMobile} className="hover:text-[#d6bf8d] transition-colors">
+            The bespoke way
+          </a>
+          <a href="#journey" onClick={closeMobile} className="hover:text-[#d6bf8d] transition-colors">
+            Milestones
+          </a>
+          <a href="#showroom" onClick={closeMobile} className="hover:text-[#d6bf8d] transition-colors">
+            Showroom & Studio
+          </a>
+        </nav>
 
-          <nav className="mt-8 space-y-5">
-            <a href="#philosophy" onClick={toggleMobile} className="font-display text-lg tracking-wider text-ivory hover:text-gold transition-colors block">
-              01. Philosophy
+        <div className="mt-12 pt-8 border-t border-[#b69151]/25 flex flex-col gap-4 font-editorial-sans text-xs text-[#cfd8d2]">
+          <p>
+            <strong className="text-[#f2eee4] block mb-1">Agrabad Flagship Studio</strong>
+            Opposite RAK Ceramics, Agrabad Access Road, Chattogram
+          </p>
+          <p>
+            <strong className="text-[#f2eee4] block mb-1">Studio Concierge</strong>
+            <a href="tel:+8801960481983" className="hover:text-[#d6bf8d] text-sm font-semibold text-[#f2eee4]">
+              +880 1960-481983
             </a>
-            <a href="#collections" onClick={toggleMobile} className="font-display text-lg tracking-wider text-ivory hover:text-gold transition-colors block">
-              02. Curated Collections
-            </a>
-            <a href="#bespoke-atelier" onClick={toggleMobile} className="font-display text-lg tracking-wider text-ivory hover:text-gold transition-colors flex items-center justify-between">
-              <span>03. Bespoke Atelier</span>
-              <span className="text-[9px] bg-gold text-teal-deep px-1.5 py-0.5 font-bold uppercase tracking-widest">Custom</span>
-            </a>
-            <a href="#why-heaven" onClick={toggleMobile} className="font-display text-lg tracking-wider text-ivory hover:text-gold transition-colors block">
-              04. The Heaven Standard
-            </a>
-            <a href="#milestones" onClick={toggleMobile} className="font-display text-lg tracking-wider text-ivory hover:text-gold transition-colors block">
-              05. Milestones of Craft
-            </a>
-            <a href="#showroom" onClick={toggleMobile} className="font-display text-lg tracking-wider text-ivory hover:text-gold transition-colors block">
-              06. Agrabad Showroom
-            </a>
-          </nav>
-
-          <div className="mt-8 pt-6 border-t border-gold/20 space-y-2 text-xs text-ivory-muted/70">
-            <p className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-gold flex-shrink-0" />
-              <a href="https://maps.app.goo.gl/pwe2VJWeLeTdTw6v9" target="_blank" rel="noopener noreferrer" className="text-ivory hover:text-gold underline">
-                Agrabad Access Road, Chattogram
-              </a>
-            </p>
-            <p className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-gold flex-shrink-0" />
-              <span>10:00 AM – 9:00 PM (Daily)</span>
-            </p>
-            <p className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-gold flex-shrink-0" />
-              <a href="tel:+8801960481983" className="text-ivory hover:text-gold">+880 1960-481983</a>
-            </p>
-          </div>
-        </div>
-
-        <div className="pt-6 border-t border-gold/20 space-y-3 mt-6">
+          </p>
           <button
-            onClick={() => { toggleMobile(); onOpenQuote(); }}
-            className="btn-luxury-shimmer w-full bg-gold hover:bg-gold-light text-teal-deep py-3.5 font-semibold uppercase tracking-[0.2em] text-xs transition-colors shadow-md cursor-pointer"
+            onClick={() => { closeMobile(); onOpenQuote(); }}
+            className="w-full mt-2 py-3 bg-[#b69151] text-[#0e2322] font-semibold text-xs uppercase tracking-wider text-center cursor-pointer hover:bg-[#d6bf8d] transition-colors"
           >
             Request a Consultation
           </button>
-          <a
-            href="https://wa.me/8801960481983?text=Hello%20Heaven%20Furniture%20Mart,%20I%20would%20like%20to%20consult%20on%20custom%20furniture."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 font-semibold uppercase tracking-[0.18em] text-xs text-center flex items-center justify-center gap-2 transition-colors"
-          >
-            WhatsApp Concierge
-          </a>
         </div>
-      </aside>
+      </div>
     </>
   );
 }

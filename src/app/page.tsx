@@ -1,71 +1,63 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Header from '@/components/Header';
-import Hero from '@/components/Hero';
-import MarqueeTicker from '@/components/MarqueeTicker';
-import Philosophy from '@/components/Philosophy';
-import Collections from '@/components/Collections';
-import Estimator from '@/components/Estimator';
-import WhyHeaven from '@/components/WhyHeaven';
-import Milestones from '@/components/Milestones';
-import Showroom from '@/components/Showroom';
-import Footer from '@/components/Footer';
-import FloatingConcierge from '@/components/FloatingConcierge';
-import ProductModal from '@/components/ProductModal';
-import QuoteModal from '@/components/QuoteModal';
-import { Product } from '@/data/products';
+import Collections from "@/components/Collections";
+import FloatingConcierge from "@/components/FloatingConcierge";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import MarqueeTicker from "@/components/MarqueeTicker";
+import Milestones from "@/components/Milestones";
+import Philosophy from "@/components/Philosophy";
+import ProductModal from "@/components/ProductModal";
+import QuoteModal from "@/components/QuoteModal";
+import Showroom from "@/components/Showroom";
+import { Product } from "@/data/products";
+import { useState } from "react";
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-ivory text-brown-deep font-sans selection:bg-teal-deep selection:text-ivory">
-      {/* 1. Sticky Editorial Navigation Header */}
+    <main
+      id="top"
+      className="min-h-screen bg-[#f2eee4] text-[#173331] font-editorial-sans relative flex flex-col gap-6 sm:gap-8"
+    >
+      {/* 1. Minimal Editorial Navigation Header */}
       <Header onOpenQuote={() => setIsQuoteOpen(true)} />
 
-      {/* 2. Full-Viewport Hero Grand Entrance */}
+      {/* 2. Beloved Dark Atmospheric Hero Entrance (Preserved As Before) */}
       <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
 
-      {/* 3. Luxury Infinite Marquee Ticker (Anchoring Hero to Brand Story) */}
+      {/* 3. Luxury Infinite Marquee Ticker (Preserved As Before) */}
       <MarqueeTicker />
 
-      {/* 4. Philosophy & Founder's Vision (Diptych Framing, Embossed Quote Card) */}
-      <Philosophy />
-
-      {/* 5. Curated Signature Collections (9-item initial grid + 22-item expansion) */}
+      {/* 4. Curated Selected Spaces (Product Info & Collections with Specs) */}
       <Collections onSelectProduct={(p) => setSelectedProduct(p)} />
 
-      {/* 6. Interactive Bespoke Atelier Budget Estimator */}
-      <Estimator />
+      {/* 5. Studio Philosophy, 6 Craft Pillars & The Bespoke Way */}
+      <Philosophy onOpenQuote={() => setIsQuoteOpen(true)} />
 
-      {/* 7. Why Discerning Clients Choose Us (4 Craft Pillars) */}
-      <WhyHeaven />
-
-      {/* 8. Brand Milestones (2020 Foundation Timeline) */}
+      {/* 6. Brand Milestones & BFIOA National Recognition Banner */}
       <Milestones />
 
-      {/* 9. Visit the Studio & Interactive Vignette Gallery */}
+      {/* 7. Agrabad Flagship Studio & Multi-Vignette Gallery (#showroom & #visit) */}
       <Showroom />
 
-      {/* 10. Architectural Footer */}
+      {/* 8. Architectural Dark Editorial Footer */}
       <Footer />
 
-      {/* 11. Floating WhatsApp Concierge */}
+      {/* 9. Floating WhatsApp Concierge */}
       <FloatingConcierge />
 
-      {/* Specification Sheet Modal */}
+      {/* 10. Specification Sheet Modal */}
       <ProductModal
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
       />
 
-      {/* Commission Consultation Modal */}
-      <QuoteModal
-        isOpen={isQuoteOpen}
-        onClose={() => setIsQuoteOpen(false)}
-      />
+      {/* 11. Consultation Request Modal */}
+      <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
     </main>
   );
 }

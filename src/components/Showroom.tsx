@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { MapPin, Clock, Phone, Calendar, Navigation } from 'lucide-react';
+import { MapPin, Clock, Phone, Navigation, Calendar } from 'lucide-react';
 import { studioVignettes } from '@/data/vignettes';
 
 export default function Showroom() {
@@ -21,53 +21,59 @@ export default function Showroom() {
   };
 
   return (
-    <section id="showroom" className="py-16 sm:py-24 lg:py-36 bg-ivory-soft text-brown-deep relative overflow-hidden border-t border-gold-hairline/30">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-20 gap-4 sm:gap-8">
+    <section id="showroom" className="relative bg-[#f2eee4] text-[#173331] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 md:px-12 border-t border-[#173331]/10">
+      {/* Backward-compatible anchor for #visit */}
+      <span id="visit" className="absolute -top-24 left-0 pointer-events-none" />
+
+      <div className="max-w-[1440px] mx-auto">
+        
+        {/* Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 sm:mb-20 gap-6">
           <div>
-            <div className="flex items-center gap-3 mb-3 sm:mb-4">
-              <span className="w-8 h-[1px] bg-gold" />
-              <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.25em] text-gold-dark font-bold">
-                Visit the Studio
-              </span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-medium text-teal-deep">
-              Experience the Craft in Person
+            <p className="font-editorial-mono text-[10px] uppercase tracking-[0.2em] text-[#7d5c27] mb-3">
+              Make it personal
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.02] tracking-tight text-[#173331]">
+              Come sit with<br />
+              <em className="text-[#7d5c27] not-italic font-normal">the possibilities.</em>
             </h2>
           </div>
-          <p className="font-sans text-xs sm:text-sm text-brown-soft max-w-md">
-            Step into our Agrabad flagship studio to feel the weight of solid seasoned timbers, touch Italian velvets, and consult with our master interior designers.
+          <p className="font-editorial-sans text-xs sm:text-sm text-[#563f2b] max-w-sm leading-relaxed">
+            Bring your floor plans, sketches, or ideas to our Agrabad studio. A conversation is the best place to begin.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
-          {/* Interactive Multi-Vignette Studio Showcase */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            <div className="relative aspect-[16/10] bg-teal-deep border border-gold shadow-2xl overflow-hidden group">
+        {/* Gallery & Location Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
+          
+          {/* Left: Interactive Multi-Vignette Gallery (7 Cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-3.5">
+            {/* Main Stage Image */}
+            <div className="relative aspect-[16/10] bg-[#0e2322] overflow-hidden shadow-xl border border-[#173331]/10 group">
               <Image
                 src={currentVignette.img}
                 alt={currentVignette.title}
                 fill
                 sizes="(max-width: 1024px) 100vw, 55vw"
-                className={`object-cover transition-all duration-500 ease-out group-hover:scale-105 ${
-                  isFading ? 'opacity-20 scale-[0.98]' : 'opacity-100 scale-100'
+                className={`object-cover transition-all duration-500 ease-out group-hover:scale-105 filter brightness-90 group-hover:brightness-100 ${
+                  isFading ? 'opacity-25 scale-[0.98]' : 'opacity-100 scale-100'
                 }`}
               />
-              <div className="absolute top-4 left-4 z-10 bg-teal-deep/90 backdrop-blur-md border border-gold/40 text-gold-light text-[9px] uppercase tracking-[0.2em] px-3 py-1 font-semibold">
+              <div className="absolute top-4 left-4 z-10 bg-[#0e2322]/90 backdrop-blur-md border border-[#b69151]/40 text-[#d6bf8d] font-editorial-mono text-[9px] uppercase tracking-[0.18em] px-3 py-1 font-semibold">
                 {currentVignette.badge}
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-teal-deep via-teal-deep/80 to-transparent text-ivory">
-                <h3 className="font-display text-lg sm:text-2xl font-medium mb-1 text-ivory">
+              <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 bg-gradient-to-t from-[#0e2322] via-[#0e2322]/70 to-transparent text-[#f2eee4]">
+                <h3 className="font-display text-xl sm:text-2xl font-normal mb-0.5 text-[#f2eee4]">
                   {currentVignette.title}
                 </h3>
-                <p className="font-sans text-xs text-ivory-muted/80">
+                <p className="font-editorial-sans text-xs text-[#cfd8d2]/80">
                   {currentVignette.subtitle}
                 </p>
               </div>
             </div>
 
-            {/* Thumbnail Vignette Switcher with Smooth Indicators */}
-            <div className="grid grid-cols-4 gap-2.5 sm:gap-4">
+            {/* Thumbnail Switcher (4 Vignettes) */}
+            <div className="grid grid-cols-4 gap-2.5 sm:gap-3.5">
               {Object.values(studioVignettes).map((v) => {
                 const isActive = v.key === activeKey;
                 return (
@@ -75,14 +81,20 @@ export default function Showroom() {
                     key={v.key}
                     type="button"
                     onClick={() => handleSwitch(v.key)}
-                    className={`relative aspect-[16/10] overflow-hidden bg-teal-deep transition-all duration-300 text-left active:scale-95 ${
+                    className={`relative aspect-[16/10] overflow-hidden bg-[#0e2322] transition-all duration-300 text-left cursor-pointer ${
                       isActive
-                        ? 'border-2 border-gold ring-2 ring-gold/40 shadow-xl scale-[1.03]'
-                        : 'border border-gold/20 opacity-60 hover:opacity-100 hover:border-gold/60'
+                        ? 'border-2 border-[#b69151] shadow-md scale-[1.02]'
+                        : 'border border-[#173331]/15 opacity-60 hover:opacity-100 hover:border-[#b69151]/50'
                     }`}
                   >
-                    <Image src={v.img} alt={v.label} fill sizes="(max-width: 640px) 25vw, 150px" className="object-cover transition-transform duration-500 hover:scale-110" />
-                    <span className="absolute bottom-0 inset-x-0 bg-teal-deep/90 text-ivory text-[8px] sm:text-[9px] uppercase tracking-wider py-1 px-1 text-center font-semibold truncate block z-10">
+                    <Image
+                      src={v.img}
+                      alt={v.label}
+                      fill
+                      sizes="(max-width: 640px) 25vw, 150px"
+                      className="object-cover transition-transform duration-500 hover:scale-110 filter brightness-90"
+                    />
+                    <span className="absolute bottom-0 inset-x-0 bg-[#0e2322]/90 text-[#f2eee4] text-[8px] sm:text-[9px] font-editorial-mono uppercase tracking-wider py-1 px-1 text-center font-medium truncate block z-10">
                       {v.label}
                     </span>
                   </button>
@@ -91,27 +103,27 @@ export default function Showroom() {
             </div>
           </div>
 
-          {/* Right Information & Location Card */}
-          <div className="lg:col-span-5 bg-ivory border border-gold-hairline p-6 sm:p-10 shadow-xl space-y-6">
+          {/* Right: Studio Location & Concierge Card (5 Cols) */}
+          <div className="lg:col-span-5 bg-[#e8dfcc] border border-[#173331]/10 p-7 sm:p-8 shadow-lg flex flex-col gap-5">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.25em] text-gold-dark font-bold block mb-2">
+              <span className="font-editorial-mono text-[9px] uppercase tracking-[0.2em] text-[#7d5c27] font-semibold block mb-1">
                 Flagship Studio
               </span>
-              <h3 className="font-display text-xl sm:text-2xl text-teal-deep font-medium">
+              <h3 className="font-display text-2xl sm:text-3xl text-[#173331] font-normal">
                 Heaven Furniture Mart
               </h3>
             </div>
 
-            <div className="space-y-4 text-xs sm:text-sm text-brown-soft border-t border-gold/20 pt-6">
+            <div className="space-y-3.5 font-editorial-sans text-xs sm:text-[13px] text-[#563f2b] border-t border-[#173331]/15 pt-4">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#b69151] flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-teal-deep block font-semibold">Flagship Gallery Address:</strong>
+                  <strong className="text-[#173331] block font-semibold mb-0.5">Flagship Gallery Address:</strong>
                   <a
                     href="https://maps.app.goo.gl/pwe2VJWeLeTdTw6v9"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-brown-soft hover:text-gold transition-colors underline decoration-gold/40"
+                    className="text-[#563f2b] hover:text-[#7d5c27] underline decoration-[#b69151]/40 transition-colors"
                   >
                     Agrabad Access Road (Opposite RAK Ceramics), Chattogram, Bangladesh
                   </a>
@@ -119,44 +131,52 @@ export default function Showroom() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-[#b69151] flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-teal-deep block font-semibold">Studio Visiting Hours:</strong>
-                  <p>10:00 AM – 9:00 PM (Open 7 Days a Week)</p>
+                  <strong className="text-[#173331] block font-semibold mb-0.5">Studio Visiting Hours:</strong>
+                  <p className="m-0">10:00 AM – 9:00 PM (Open 7 Days a Week)</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <Phone className="w-4 h-4 text-[#b69151] flex-shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-teal-deep block font-semibold">Concierge & Designer Hotline:</strong>
-                  <p><a href="tel:+8801960481983" className="hover:text-gold transition-colors">+880 1960-481983</a></p>
+                  <strong className="text-[#173331] block font-semibold mb-0.5">Concierge & Designer Hotline:</strong>
+                  <p className="m-0">
+                    <a href="tel:+8801960481983" className="hover:text-[#7d5c27] font-medium transition-colors">
+                      +880 1960-481983
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-gold/20 flex flex-col gap-3">
+            {/* Action Buttons */}
+            <div className="pt-2 border-t border-[#173331]/15 flex flex-col gap-2.5">
               <a
                 href={`https://wa.me/8801960481983?text=${encodeURIComponent(currentVignette.wa)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-luxury-shimmer w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 font-semibold uppercase tracking-[0.2em] text-xs text-center flex items-center justify-center gap-2 transition-colors shadow-md active:scale-95"
+                className="btn-luxury-shimmer bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 px-4 font-semibold uppercase tracking-[0.16em] text-xs text-center flex items-center justify-center gap-2 transition-colors shadow-md cursor-pointer"
               >
                 <span>Schedule VIP Studio Appointment</span>
                 <Calendar className="w-4 h-4" />
               </a>
+
               <a
                 href="https://maps.app.goo.gl/pwe2VJWeLeTdTw6v9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-teal-deep hover:bg-gold text-ivory hover:text-teal-deep py-3.5 font-semibold uppercase tracking-[0.2em] text-xs text-center flex items-center justify-center gap-2 transition-colors border border-gold/40 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 border border-[#173331]/30 hover:border-[#173331] text-[#173331] hover:text-[#7d5c27] py-3 px-4 font-semibold uppercase tracking-[0.16em] text-xs transition-colors bg-transparent hover:bg-white/40 cursor-pointer text-center"
               >
                 <span>Get Directions (Google Maps)</span>
-                <Navigation className="w-4 h-4" />
+                <Navigation className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );

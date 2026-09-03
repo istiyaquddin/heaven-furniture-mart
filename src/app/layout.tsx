@@ -1,14 +1,6 @@
 import type { Metadata } from 'next';
-import { Montserrat, Playfair_Display } from 'next/font/google';
+import { Playfair_Display, DM_Sans, DM_Mono } from 'next/font/google';
 import './globals.css';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-sans',
-  display: 'swap',
-});
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -18,12 +10,26 @@ const playfair = Playfair_Display({
   display: 'swap',
 });
 
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const dmMono = DM_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'Heaven Furniture Mart | Bespoke Luxury Furniture & Interior Styling | Chattogram',
   description: "Chattogram's leading bespoke furniture atelier. We design, craft, and customize solid wood living, bedroom, dining, and executive suites around your floor plan. Agrabad Access Road.",
   keywords: 'Heaven Furniture Mart, bespoke furniture Chattogram, luxury interior design Chittagong, custom sofas, teak wood beds, royal dining table, office executive furniture Agrabad',
   authors: [{ name: 'Abul Kalam Bhuiyan, Managing Director' }],
-  metadataBase: new URL('https://heaven-furniture-e-mart.vercel.app'),
+  metadataBase: new URL('https://heaven-furniture-mart.vercel.app'),
   openGraph: {
     type: 'website',
     url: 'https://heaven-furniture-mart.vercel.app',
@@ -85,17 +91,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${dmMono.variable} scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-ivory text-brown-deep font-sans antialiased overflow-x-hidden selection:bg-teal-deep selection:text-ivory">
+      <body className="bg-[#f2eee4] text-[#173331] font-sans antialiased selection:bg-[#173331] selection:text-[#f2eee4]">
         {children}
       </body>
     </html>
   );
 }
-
