@@ -32,7 +32,7 @@ export default function Philosophy() {
               {/* Landscape 16:9 Keynote Photo Container */}
               <div className="relative overflow-hidden aspect-[16/9] bg-teal-deep group">
                 <Image
-                  src="/assets/images/md-portrait.jpg"
+                  src="/assets/images/md-keynote.jpg"
                   alt="Abul Kalam Bhuiyan, Managing Director of Heaven Furniture Mart addressing the 14th Chittagong Furniture Fair"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
