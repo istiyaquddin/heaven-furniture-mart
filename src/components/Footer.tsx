@@ -15,8 +15,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-ivory/10">
           {/* Brand Identity */}
           <div className="lg:col-span-4 flex items-start gap-3">
-            <span className="w-8 h-8 sm:w-9 sm:h-9 border border-gold text-gold font-editorial-serif text-xl sm:text-2xl flex items-center justify-center leading-none shrink-0">
-              H
+            <span className="relative w-9 h-9 border border-gold rounded-full text-gold font-editorial-serif text-xl sm:text-2xl flex items-center justify-center leading-none shrink-0">
+              <span className="relative z-10">H</span>
+              <span
+                aria-hidden="true"
+                className="absolute -top-1 -right-1 w-2 h-2 rotate-45 bg-gold border-2 border-teal-deep"
+              />
             </span>
             <div className="flex flex-col">
               <strong className="tracking-[0.18em] text-base sm:text-lg font-semibold font-editorial-sans text-ivory leading-tight">
